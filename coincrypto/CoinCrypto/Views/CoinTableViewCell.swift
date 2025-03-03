@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CoinTableViewCell: UITableViewCell {
+    
+    var coin: Coin? {
+        didSet { configure() }
+    }
     
     private let coinRankLabel: UILabel = {
         let label = UILabel()
@@ -53,13 +58,18 @@ class CoinTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     func configure() {
-        coinRankLabel.text = "1"
-        coinNameLabel.text = "Bitcoin"
-        coinSymbolLabel.text = "BTC"
         
-        coinPriceLabel.text = "$61,000"
-        coinPercentChangeLabel.text = "-2.40"
+        guard let coin else { return }
+        
+        let url = URL(string: coin.image)
+        coinImageView.kf.setImage(with: url)
+        coinRankLabel.text = "\(coin.marketCapRank)"
+        coinNameLabel.text = coin.name
+        coinSymbolLabel.text = coin.symbol.uppercased()
+        coinPriceLabel.text = "\(coin.currentPrice)"
+        coinPercentChangeLabel.text = "\(coin.priceChangePercentage24H)"
         coinImageView.backgroundColor = .systemRed
     }
     
@@ -68,6 +78,7 @@ class CoinTableViewCell: UITableViewCell {
         coinRankLabel.translatesAutoresizingMaskIntoConstraints = false
         coinRankLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
         coinRankLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        coinRankLabel.widthAnchor.constraint(equalToConstant: 24).isActive = true
         
         contentView.addSubview(coinImageView)
         coinImageView.translatesAutoresizingMaskIntoConstraints = false

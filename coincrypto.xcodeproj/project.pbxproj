@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		22DC6D2C2D7560A800B55A9E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 22DC6D2B2D7560A800B55A9E /* Kingfisher */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		22DC6CD22D7508E100B55A9E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22DC6D2C2D7560A800B55A9E /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +130,7 @@
 			);
 			name = coincrypto;
 			packageProductDependencies = (
+				22DC6D2B2D7560A800B55A9E /* Kingfisher */,
 			);
 			productName = coincrypto;
 			productReference = 22DC6CBB2D7508DF00B55A9E /* coincrypto.app */;
@@ -208,6 +214,9 @@
 			);
 			mainGroup = 22DC6CB22D7508DF00B55A9E;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				22DC6D2A2D7560A800B55A9E /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 22DC6CBC2D7508DF00B55A9E /* Products */;
 			projectDirPath = "";
@@ -569,6 +578,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		22DC6D2A2D7560A800B55A9E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		22DC6D2B2D7560A800B55A9E /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22DC6D2A2D7560A800B55A9E /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 22DC6CB32D7508DF00B55A9E /* Project object */;
 }

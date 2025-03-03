@@ -7,11 +7,13 @@
 
 import UIKit
 
+private let reuseIdentifier = "cell"
+
 class CoinPriceViewController: UIViewController {
     
-    private let reuseIdentifier = "cell"
-
     private let tableView = UITableView()
+    private let service = MockCoinDataService()
+    private var coins = [Coin]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +28,18 @@ class CoinPriceViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.frame = view.frame
         tableView.rowHeight = 56
+        
+        Task { await fetchCoins() }
+    }
+    
+    func fetchCoins() async {
+        do {
+            self.coins = try await service.fetchCoins()
+            tableView.reloadData()
+            print("DEBUG: Coins count \(coins.count)")
+        } catch {
+            print("DEBUG: Failed to fetch coins with error: \(error.localizedDescription)")
+        }
     }
 
 }
@@ -34,11 +48,12 @@ class CoinPriceViewController: UIViewController {
 extension CoinPriceViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return coins.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! CoinTableViewCell
+        cell.coin = coins[indexPath.row]
         return cell
     }
     
