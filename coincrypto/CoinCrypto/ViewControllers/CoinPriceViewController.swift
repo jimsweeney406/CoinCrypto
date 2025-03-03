@@ -61,4 +61,11 @@ extension CoinPriceViewController: UITableViewDataSource {
 
 extension CoinPriceViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let coin = coins[indexPath.row]
+        let detailVC = CoinDetailsViewController()
+        detailVC.coin = coin
+        show(detailVC, sender: self)
+    }
+    
 }
