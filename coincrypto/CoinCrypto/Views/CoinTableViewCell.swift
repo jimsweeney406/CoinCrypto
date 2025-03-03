@@ -86,6 +86,8 @@ class CoinTableViewCell: UITableViewCell {
         coinImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         coinImageView.heightAnchor.constraint(equalToConstant: 32).isActive = true
         coinImageView.widthAnchor.constraint(equalToConstant: 32).isActive = true
+        coinImageView.layer.cornerRadius = 10
+        coinImageView.clipsToBounds = true
         
         let coinNameStack = UIStackView(arrangedSubviews: [coinNameLabel, coinSymbolLabel])
         coinNameStack.spacing = 4
